@@ -1,7 +1,8 @@
 import AdminJS from "adminjs";
 import AdminJSFastify from "@adminjs/fastify";
 import * as AdminJSMongoose from "@adminjs/mongoose";
-import * as Models from "../models/index.js";
+import { Customer, DeliveryPartner, Admin, Branch } from "../models/index.js";
+
 import { authenticate, COOKIE_PASSWORD, sessionStore } from "./config.js";
 import { dark, light, noSidebar } from "@adminjs/themes";
 
@@ -10,35 +11,35 @@ AdminJS.registerAdapter(AdminJSMongoose);
 export const admin = new AdminJS({
   resources: [
     {
-      resource: Models.Customer,
+      resource: Customer,
       options: {
         listProperties: ["phone", "role", "isActivated"],
         filterProperties: ["phone", "role"],
       },
     },
     {
-      resource: Models.DeliveryPartner,
+      resource: DeliveryPartner,
       options: {
         listProperties: ["email", "role", "isActivated"],
         filterProperties: ["email", "role"],
       },
     },
     {
-      resource: Models.Admin,
+      resource: Admin,
       options: {
         listProperties: ["email", "role", "isActivated"],
         filterProperties: ["email", "role"],
       },
     },
-    { resource: Models.Branch },
-    { resource: Models.Product },
-    { resource: Models.Category },
-    { resource: Models.Order },
-    { resource: Models.Counter },
+    { resource: Branch },
+    // { resource: Models.Product },
+    // { resource: Models.Category },
+    // { resource: Models.Order },
+    // { resource: Models.Counter },
   ],
 
   branding: {
-    companyName: "Blinkit",
+    companyName: "Aynaghor",
     withMadeWithLove: false,
     favicon:
       "https://res.cloudinary.com/dponzgerb/image/upload/v1722852076/s32qztc3slzqukdletgj.png",
