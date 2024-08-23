@@ -30,8 +30,8 @@ const customerSchema = new mongoose.Schema({
 //Delivery Partnar Schema
 const deliveryPartnerSchema = new mongoose.Schema({
     ...userSchema.obj,
-    email:{type: String, required: true, unique: true},
-    password:{type: String, required: true},
+    email: { type: String, required: true, unique: true },
+    password: { type: String, required: true },
     phone: { type: Number, required: true },
     role: { type: String, enum: ["DeliveryPartner"], default: "DeliveryPartner" },
     liveLocation: {
@@ -44,3 +44,15 @@ const deliveryPartnerSchema = new mongoose.Schema({
         ref: "Branch"
     }
 })
+
+//admin Partnar Schema
+const adminPartnerSchema = new mongoose.Schema({
+    ...userSchema.obj,
+    email: { type: String, required: true, unique: true },
+    password: { type: String, required: true },
+    role: { type: String, enum: ["Admin"], default: "Admin" },
+})
+
+export const Customer = mongoose.model("Customer", customerSchema);
+export const DeliveryPartner = mongoose.model("DeliveryPartner", deliveryPartnerSchema);
+export const Admin = mongoose.model("Admin", adminPartnerSchema);
