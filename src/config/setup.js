@@ -1,7 +1,7 @@
 import AdminJS from "adminjs";
 import AdminJSFastify from "@adminjs/fastify";
 import * as AdminJSMongoose from "@adminjs/mongoose";
-import { Customer, DeliveryPartner, Admin, Branch, Product, Category } from "../models/index.js";
+import { Customer, DeliveryPartner, Admin, Branch, Product, Category, Order, Counter } from "../models/index.js";
 
 import { authenticate, COOKIE_PASSWORD, sessionStore } from "./config.js";
 import { dark, light, noSidebar } from "@adminjs/themes";
@@ -34,8 +34,8 @@ export const admin = new AdminJS({
     { resource: Branch },
     { resource: Product },
     { resource: Category },
-    // { resource: Models.Order },
-    // { resource: Models.Counter },
+    { resource: Order },
+    { resource: Counter },
   ],
 
   branding: {
