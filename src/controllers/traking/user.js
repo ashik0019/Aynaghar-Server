@@ -15,8 +15,19 @@ export const updateUser = async (req, reply) => {
         } else if (user.role === 'DeliveryPartner') {
             UserModel = DeliveryPartner;
         } else {
-
+            return reply.status(400).send({ message: "Invalid user role." });
         }
+
+        const updateUser = await UserModel.findByIdAndUpdate(userId, { $set: updateData }, { new: true, runValidators: true })
+
+        if(!updateUser) {
+            return reply.status(404).send({message: "User not found!"});
+        }
+
+        return reply.send({
+            message: "User updated successfully.", 
+            user: updateUser
+        })
 
 
     } catch (error) {
