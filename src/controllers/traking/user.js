@@ -27,7 +27,8 @@ export const updateUser = async (req, reply) => {
         return reply.send({
             message: "User updated successfully.", 
             user: updateUser
-        })
+        });
+        
 
 
     } catch (error) {
