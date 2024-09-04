@@ -9,7 +9,14 @@ export const updateUser = async (req, reply) => {
             return reply.status(400).send({ message: "User not found" });
         }
 
-        let userModel;
+        let UserModel;
+        if (user.role === 'Customer') {
+            UserModel = Customer;
+        } else if (user.role === 'DeliveryPartner') {
+            UserModel = DeliveryPartner;
+        } else {
+
+        }
 
 
     } catch (error) {
