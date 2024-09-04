@@ -20,18 +20,16 @@ export const updateUser = async (req, reply) => {
 
         const updateUser = await UserModel.findByIdAndUpdate(userId, { $set: updateData }, { new: true, runValidators: true })
 
-        if(!updateUser) {
-            return reply.status(404).send({message: "User not found!"});
+        if (!updateUser) {
+            return reply.status(404).send({ message: "User not found!" });
         }
 
         return reply.send({
-            message: "User updated successfully.", 
+            message: "User updated successfully.",
             user: updateUser
         });
-        
-
 
     } catch (error) {
-
+        return reply.status(500).send({ message: "User update failed!", error });
     }
 }
