@@ -1,4 +1,4 @@
-import { Product } from "../../models/product.js";
+import  Product  from "../../models/product.js";
 
 
 export const getProductsByCategoryId = async (req, reply) => {
@@ -6,7 +6,7 @@ export const getProductsByCategoryId = async (req, reply) => {
 
     try {
         const products = await Product.find({ category: categoryId })
-            .select("_category")
+            .select("-category")
             .exec();
         return reply.send(products)
     } catch (error) {
